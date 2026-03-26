@@ -3,14 +3,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Bevásárló Lista</title>
 </head>
 <body>
     <div id="myDIV" class="header">
-    <h2>Teendők</h2>    
-    <div class="input-group"> <input type="text" id="myInput" placeholder="Cím...">
-        <span onclick="newElement()" class="addBtn">Hozzáad</span>
+    <h2>Bevásárló Lista</h2>    
+    <div class="input-group"> <input type="text" id="myInput" placeholder="Termék neve...">
     </div>
+    <div class="input-group"> <input type="text" id="myPrice" placeholder="Termék ára...">
+    </div>
+    <span onclick="newElement(), newPrice()" class="addBtn">Hozzáadás</span>
+
 </div>
 
     <ol id="myUL">
