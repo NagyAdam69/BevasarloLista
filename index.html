@@ -12,7 +12,7 @@
     </div>
     <div class="input-group"> <input type="text" id="myPrice" placeholder="Termék ára...">
     </div>
-    <span onclick="newElement(), newPrice()" class="addBtn">Hozzáadás</span>
+    <button onclick="newElement(), newPrice()" class="addBtn">Hozzáadás</button>
 
 </div>
 
@@ -53,14 +53,23 @@ list.addEventListener('click', function(ev) {
 function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
+  var priceValue = document.getElementById("myPrice").value;
   var t = document.createTextNode(inputValue);
+  var p = document.createTextNode(" - " + priceValue + " Ft");
   li.appendChild(t);
+  li.appendChild(p);
   if (inputValue === '') {
     alert("Muszáj írnod valamit!");
   } else {
+  
+  if (priceValue === '' || isNaN(priceValue)) {
+    alert("Érvénytelen ár!");
+  } else {
     document.getElementById("myUL").appendChild(li);
   }
+  }
   document.getElementById("myInput").value = "";
+  document.getElementById("myPrice").value = "";
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
