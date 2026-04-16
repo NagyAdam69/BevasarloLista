@@ -14,7 +14,6 @@
       <div class="input-group"> <input type="text" id="myPrice" placeholder="Termék ára..."></div>
       <div class="input-group"> <input type="text" id="myQuantity" placeholder="Db szám..."></div>
     </div>
-    <!-- <button onclick="newElement(), newPrice()" class="addBtn">Hozzáadás</button> -->
     <button onclick="newElement()" class="addBtn">Hozzáadás</button>
 
   </div>
@@ -49,6 +48,7 @@ var list = document.querySelector('ol');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
+    console.log(document.querySelectorAll('.checked li'))
   }
 }, false);
 
@@ -58,7 +58,6 @@ function newElement() {
   var inputValue = document.getElementById("myInput").value;
   var priceValue = document.getElementById("myPrice").value;
   var quantityValue = document.getElementById("myQuantity").value;
-  console.log(quantityValue)
   if (!isNaN(quantityValue) && !isNaN(priceValue) && quantityValue != ""){
     
     priceValue = priceValue * quantityValue
@@ -73,11 +72,11 @@ function newElement() {
     alert("Muszáj írnod valamit!");
   } else {
   
-  if (priceValue === '' || isNaN(priceValue || isNaN(quantityValue))) {
-    alert("Érvénytelen input!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
+    if (priceValue === '' || isNaN(priceValue || isNaN(quantityValue))) {
+      alert("Érvénytelen input!");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+    }
   }
   document.getElementById("myInput").value = "";
   document.getElementById("myPrice").value = "";
