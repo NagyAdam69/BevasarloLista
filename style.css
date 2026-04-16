@@ -70,7 +70,7 @@ ol li.checked::before {
     padding: 20px;
     color: white;
     text-align: center;
-    max-width: 500px;
+    max-width: 600px;
     margin: 20px auto; 
     border-radius: 15px;
 }
@@ -86,9 +86,8 @@ input {
   margin: 0;
   border: none;
   border-radius: 0;
-  width: 75%;
+  width: fit-content;
   padding: 10px;
-  float: left;
   font-size: 16px;
   border-radius: 30px;
   margin: 3px;
@@ -121,5 +120,18 @@ body{
 }
 
 #myPrice {
-  max-width: 100px;
+  max-width: 120px;
+}
+
+#myQuantity{
+  max-width: 120px;
+}
+
+#myInput{
+  width: 300px;
+}
+
+.myInputs{
+  display: flex;
+  align-content: center;
 }

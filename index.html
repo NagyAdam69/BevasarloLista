@@ -6,15 +6,18 @@
     <title>Bevásárló Lista</title>
 </head>
 <body>
-    <div id="myDIV" class="header">
-    <h2>Bevásárló Lista</h2>    
-    <div class="input-group"> <input type="text" id="myInput" placeholder="Termék neve...">
-    </div>
-    <div class="input-group"> <input type="text" id="myPrice" placeholder="Termék ára...">
-    </div>
-    <button onclick="newElement(), newPrice()" class="addBtn">Hozzáadás</button>
+  <div id="myDIV" class="header">
 
-</div>
+    <h2>Bevásárló Lista</h2>  
+    <div class="myInputs">
+      <div class="input-group"> <input type="text" id="myInput" placeholder="Termék neve..."></div>
+      <div class="input-group"> <input type="text" id="myPrice" placeholder="Termék ára..."></div>
+      <div class="input-group"> <input type="text" id="myQuantity" placeholder="Db szám..."></div>
+    </div>
+    <!-- <button onclick="newElement(), newPrice()" class="addBtn">Hozzáadás</button> -->
+    <button onclick="newElement()" class="addBtn">Hozzáadás</button>
+
+  </div>
 
     <ol id="myUL">
     </ol>
@@ -54,6 +57,14 @@ function newElement() {
   var li = document.createElement("li");
   var inputValue = document.getElementById("myInput").value;
   var priceValue = document.getElementById("myPrice").value;
+  var quantityValue = document.getElementById("myQuantity").value;
+  console.log(quantityValue)
+  if (!isNaN(quantityValue) && !isNaN(priceValue) && quantityValue != ""){
+    
+    priceValue = priceValue * quantityValue
+    inputValue = `${inputValue}   x${quantityValue}`
+  }
+
   var t = document.createTextNode(inputValue);
   var p = document.createTextNode(" - " + priceValue + " Ft");
   li.appendChild(t);
@@ -62,14 +73,15 @@ function newElement() {
     alert("Muszáj írnod valamit!");
   } else {
   
-  if (priceValue === '' || isNaN(priceValue)) {
-    alert("Érvénytelen ár!");
+  if (priceValue === '' || isNaN(priceValue || isNaN(quantityValue))) {
+    alert("Érvénytelen input!");
   } else {
     document.getElementById("myUL").appendChild(li);
   }
   }
   document.getElementById("myInput").value = "";
   document.getElementById("myPrice").value = "";
+  document.getElementById("myQuantity").value = "";
 
   var span = document.createElement("SPAN");
   var txt = document.createTextNode("\u00D7");
