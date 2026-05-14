@@ -15,11 +15,11 @@
       <div class="input-group"> <input type="text" id="myQuantity" placeholder="Db szám..."></div>
     </div>
     <button onclick="newElement()" class="addBtn">Hozzáadás</button>
-
+    
   </div>
-
-    <ol id="myUL">
-    </ol>
+  <h2 id="sumPrice">Összesen: 0 Ft</h2>
+  <ol id="myUL">
+  </ol>
 </body>
 <script>
     // Create a "close" button and append it to each list item
@@ -45,12 +45,47 @@ for (i = 0; i < close.length; i++) {
 
 // Add a "checked" symbol when clicking on a list item
 var list = document.querySelector('ol');
+var sum = document.getElementById("sumPrice");
+
 list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
+  if (ev.target.classList.contains('close')) {
+    const li = ev.target.parentElement;
+    li.remove();
+    frissitOsszeget();
+  }
+
+  // 2. PIPÁLÁS: Ha magára a listaelemre kattintunk
+  else if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
-    console.log(document.querySelectorAll('.checked li'))
+    frissitOsszeget();
   }
 }, false);
+
+// Ez a függvény felel az összeg folyamatos frissítéséért
+function frissitOsszeget() {
+  let osszeg = 0;
+  
+  const kijeloltElemek = document.querySelectorAll('li.checked');
+  
+  kijeloltElemek.forEach(item => {
+    const szoveg = item.innerText;
+    const részek = szoveg.split(" - ");
+    if (részek.length > 1) {
+      const ar = parseInt(részek[1].split(" Ft")[0]);
+      if (!isNaN(ar)) {
+        osszeg += ar;
+      }
+    }
+  });
+
+  // Kiírás (kezeli az input mezőt és a sima szöveget is)
+  const eredmenySzoveg = `Összesen: ${osszeg} Ft`;
+  if (sum.tagName === 'INPUT') {
+    sum.value = eredmenySzoveg;
+  } else {
+    sum.innerText = eredmenySzoveg;
+  }
+}
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {

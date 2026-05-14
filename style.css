@@ -135,3 +135,7 @@ body{
   display: flex;
   align-content: center;
 }
+
+#sumPrice{
+  text-align: center;
+}
